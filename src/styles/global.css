@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@config "../../tailwind.config.js";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  a {
+    @apply text-lila-800 dark:text-fuzz-300 hover:underline;
+  }
+}
+
+@theme {
+  --font-sans: "Nunito Variable", sans-serif;
+  /* Phthalo color family */
+  --color-phthalo-50: #f5f8f8;
+  --color-phthalo-100: #ddeae9;
+  --color-phthalo-200: #bad5d4;
+  --color-phthalo-300: #90b8b7;
+  --color-phthalo-400: #689999;
+  --color-phthalo-600: #3d6264;
+  --color-phthalo-700: #335152;
+  --color-phthalo-800: #2c4243;
+  --color-phthalo-900: #253435;
+  --color-phthalo-950: #131f20;
+  /* Fuzz color family */
+  --color-fuzz-50: #fff4ed;
+  --color-fuzz-100: #ffe6d5;
+  --color-fuzz-200: #ffbe98;
+  --color-fuzz-300: #ffa272;
+  /* Lila color family */
+  --color-lila-100: #fae5ff;
+  --color-lila-200: #f4caff;
+  --color-lila-700: #a30ac1;
+  --color-lila-800: #870b9d;
+  --color-lila-900: #791089;
+  --color-lila-950: #4b0057;
+  /* Zomp!!! */
+  --color-zomp: #39a78e;
+}

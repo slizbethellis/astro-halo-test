@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-icon/components";
+
+const iconClass = "inline-block h-4 h-6 w-6 stroke-[1.5] text-lila-900 dark:text-fuzz-300";
+const socials = [
+  {
+    id: 1,
+    label: 'Follow me on Bluesky',
+    link: 'https://bsky.app/profile/haloroundmyhead.com',
+    icon: "meteor-icons--bluesky",
+  },
+  { 
+    id: 2,
+    label: 'Follow me on Instagram',
+    link: 'https://www.instagram.com/haloroundmyhead/',
+    icon: "iconoir:instagram",
+  },
+];
+---
+
+{socials.map((social) => (
+  <li class="hover:bg-phthalo-100 dark:hover:bg-phthalo-900 rounded-full max-[370px]:p-1 p-2">
+    <a
+      href={social.link}
+      aria-label={social.label}
+      rel="noopener"
+    >
+      <Icon name={social.icon} class={iconClass} />
+    </a>
+  </li> ))}

@@ -1,0 +1,24 @@
+{
+  "name": "astro-halo-test",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/nunito": "^5.2.5",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.5",
+    "astro": "^5.7.10",
+    "astro-icon": "^1.1.5",
+    "tailwindcss": "^4.1.5"
+  },
+  "devDependencies": {
+    "@iconify-json/iconoir": "^1.2.7",
+    "@iconify-json/lucide": "^1.2.40",
+    "@iconify-json/meteor-icons": "^1.2.1"
+  }
+}

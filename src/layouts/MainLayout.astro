@@ -1,0 +1,29 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "@fontsource-variable/nunito";
+import "../styles/global.css";
+const { pageTitle } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="bg-phthalo-50 text-phthalo-950 dark:bg-phthalo-950 dark:text-phthalo-50">
+    <Header />
+    {/* Navbar height: 4rem
+    Footer height: 4rem */}
+    <div class="flex flex-wrap mx-auto overflow-auto justify-center w-full min-h-[calc(100dvh_-_8rem)] dark:[scrollbar-color:#689999_#0d141a] print:text-black">
+      <slot/>
+    </div>
+    <Footer />
+    {/*  <script>
+      import "../scripts/menu.js";
+    </script> */}
+  </body>
+</html>
