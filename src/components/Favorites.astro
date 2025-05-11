@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import Link from "./Link.astro";
+import { dateOptions } from "../scripts/dateOptions";
+
+const favs = (await getCollection('blog'))
+	.filter((post) => post.data.favorite === true)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<div class="flex flex-col m-6">
+  <h2 class="text-center text-2xl font-bold">Favorites</h2>
+  {favs.map((fav) => (
+    <article class="mt-3 first:mt-5">
+      <h3 class="text-lg font-semibold"><Link href={`/blog/${fav.id}`}>{fav.data.title}</Link></h3>
+      <span class="text-sm">{fav.data.pubDate.toLocaleDateString("en-US", dateOptions)}</span>
+    </article>
+  ))}
+</div>

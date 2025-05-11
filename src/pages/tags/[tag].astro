@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import PostExcerpt from "@igor.dvlpr/astro-post-excerpt";
+import MainLayout from "../../layouts/MainLayout.astro";
+import Link from "../../components/Link.astro";
+import { dateOptions } from "../../scripts/dateOptions.ts"
+
+export async function getStaticPaths() {
+  const allPosts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  const uniqueTags = [...new Set(allPosts.map((post: any) => post.data.tags).flat())];
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = allPosts.filter((post: any) => post.data.tags.includes(tag));
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+};
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+const totalCount = posts.length;
+---
+
+<MainLayout pageTitle=`${tag} | Haloroundmyhead Knits`>
+  <main class="flex flex-col max-w-full my-7 md:my-10">
+    <h1 class="text-center text-5xl leading-none font-bold mb-10 mx-3">{`${totalCount} post${
+      totalCount === 1 ? '' : 's'
+    } tagged with “${tag}”`}</h1>
+    <section class="flex flex-col self-center w-full">
+      <div class="self-center space-y-5 divide-y divide-phthalo-600 dark:divide-phthalo-200/50 border-b border-phthalo-600 dark:border-phthalo-200/50 mx-6 md:mx-12 max-w-prose">
+        {posts.map((post) => (
+          <article class="first:pt-0 pt-5">
+            <h2 class="text-2xl">
+              <Link href={`/blog/${post.id}`}>
+                {post.data.title}
+              </Link>
+            </h2>
+            <span class="text-sm mt-1.5">{post.data.pubDate.toLocaleDateString("en-US", dateOptions)}</span>
+            <p class='text-lg leading-6 mt-2.5 mb-5'><PostExcerpt post={post} words={32} /></p>
+          </article>
+        ))}
+      </div>
+      <div class="self-center mt-10">
+        <Link href="/tags" class="rounded-full text-lg font-bold bg-lila-900 text-fuzz-50 px-6 py-2 dark:bg-fuzz-300 dark:text-phthalo-950 hover:no-underline hover:bg-lila-700 dark:hover:bg-fuzz-200">Browse all tags</Link>
+      </div>
+    </section>
+  </main>
+</MainLayout>

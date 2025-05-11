@@ -1,0 +1,18 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import TagButtons from "../../components/TagButtons.astro";
+const pageTitle = "Tags | Haloroundmyhead Knits";
+---
+
+<MainLayout pageTitle={pageTitle}>
+  <main class="flex flex-col max-w-full my-7 md:my-10">
+    <h1 class="text-center text-5xl leading-none font-bold mb-10">Tags</h1>
+    <div class="self-center mx-6 md:mx-12 w-full">
+      <TagButtons
+        listClass="gap-x-2.5 gap-y-5"
+        linkClass="text-lg px-3"
+        numTags={999}
+      />
+    </div>
+  </main>
+</MainLayout>

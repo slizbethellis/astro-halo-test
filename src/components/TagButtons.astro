@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import Link from "./Link.astro";
+
+const { listClass, linkClass, numTags } = Astro.props;
+
+const allPosts = await getCollection("blog");
+const tags = allPosts.map((tag) => tag.data.tags).flat();
+const processedTags = tags.reduce((acc: any, tag) => {
+  const value = acc[tag] || 0;
+  const pTags = {
+    ...acc,
+    [tag]: value + 1,
+  };
+  const sortedTags = Object.fromEntries(
+    Object.entries(pTags).sort((a: any, b: any) => b[1] - a[1]),
+  );
+  return sortedTags;
+}, {});
+const listClasses = `flex flex-wrap justify-center ${listClass}`;
+const linkClasses = `border-2 border-lila-900 dark:border-fuzz-300 rounded-full text-phthalo-900 dark:text-phthalo-100 hover:no-underline hover:ring-2 hover:border-lila-700 hover:ring-lila-700 dark:hover:border-fuzz-200 dark:hover:ring-fuzz-200 text-semibold py-1 ${linkClass}`;
+---
+
+<ul class={listClasses}>
+  {Object.entries(processedTags).map(([tag, val]) => (
+    <li>
+      <Link
+        class={linkClasses}
+        href={`/tags/${tag}/`}
+      >
+        {tag} {`(${val})`}
+      </Link>
+    </li>
+  ))
+  .slice(0, numTags)}
+</ul>

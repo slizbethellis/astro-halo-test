@@ -1,16 +1,37 @@
 ---
+import { getEntry } from "astro:content";
 import MainLayout from "../layouts/MainLayout.astro";
+import BlogCard from "../components/BlogCard.astro";
+import Link from "../components/Link.astro";
+import { dateOptions } from "../scripts/dateOptions.ts"
+const post = await getEntry("blog", "2017-01-04-a-beginners-guide-to-brewing-with-chemex");
+console.log(post);
 const pageTitle = "Home | Haloroundmyhead Knits";
 ---
 
 <MainLayout pageTitle={pageTitle}>
-	<section class="flex flex-col mx-auto items-center justify-center mt-4 sm:mt-11 mb-6 sm:mb-12">
-		<h1 class="text-center text-[44px] leading-[60px] font-semibold mx-3 mb-3 sm:mb-6">Modern Patterns for Knitters and Crocheters</h1>
-		<a
-			href="/"
-			class="rounded-full text-lg font-bold bg-lila-900 text-fuzz-50 px-6 py-2 dark:bg-fuzz-300 dark:text-phthalo-950 hover:no-underline hover:bg-lila-700 dark:hover:bg-fuzz-200"
-		>
-			Browse all patterns
-		</a>
-	</section>
+	<main class='items-center justify-center max-w-full'>
+		<section class="flex flex-col mx-auto items-center justify-center mt-4 sm:mt-11 mb-6 sm:mb-12">
+			<h1 class="text-center text-[44px] leading-[60px] font-semibold mx-3 mb-3 sm:mb-6">Modern Patterns for Knitters and Crocheters</h1>
+			<Link
+				href="/"
+				class="rounded-full text-lg font-bold bg-lila-900 text-fuzz-50 px-6 py-2 dark:bg-fuzz-300 dark:text-phthalo-950 hover:no-underline hover:bg-lila-700 dark:hover:bg-fuzz-200"
+			>
+				Browse all patterns
+			</Link>
+		</section>
+	</main>
+	<section class="flex flex-col items-center justify-center w-full bg-lila-200 dark:bg-phthalo-800 text-phthalo-950 dark:text-phthalo-50 px-12 lg:px-24 pt-3 pb-9 md:py-3 lg:py-6">
+    <div class="max-w-5xl">
+      <h2 class="text-center font-semibold text-2xl md:text-4xl m-3 md:m-6">From the Blog</h2>
+      <BlogCard
+				pubDate={post?.data.pubDate.toLocaleDateString("en-US", dateOptions)}
+				image={post?.data.image}
+				alt={post?.data.alt}
+				post={post}
+			>
+				<h3 class="font-semibold hover:underline my-0 text-lila-800 dark:text-fuzz-300 text-xl md:text-2xl"><Link href={`/blog/${post?.id}`}>{post?.data.title}</Link></h3>
+			</BlogCard>
+    </div>
+  </section>
 </MainLayout>

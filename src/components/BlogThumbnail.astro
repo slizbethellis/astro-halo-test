@@ -1,0 +1,15 @@
+---
+import { Picture } from "astro:assets";
+const { image, alt } = Astro.props;
+---
+
+<div class="flex items-center self-center shrink-0 rounded-full overflow-hidden [-webkit-transform:translate3d(0,0,0)] [-webkit-backface-visibility:hidden] w-[200px] mb-5 lg:m-1.5">
+  <Picture
+    src={image}
+    alt={alt}
+    width="200"
+    height="200"
+    fit="cover"
+    layout="constrained"
+  />
+</div>

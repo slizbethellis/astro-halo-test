@@ -1,0 +1,19 @@
+---
+import PostExcerpt from "@igor.dvlpr/astro-post-excerpt";
+import BlogThumbnail from "./BlogThumbnail.astro";
+const { image, alt, pubDate, post } = Astro.props;
+---
+
+<article class="flex flex-col lg:flex-row items-center justify-center lg:space-x-3 pb-2 lg:pb-0 md:pr-3">
+  <div class="p-3 lg:p-6">
+    <slot/>
+    <span class='text-sm mt-1.5'>{pubDate}</span>
+    <p class="text-lg leading-6 my-4">
+      <PostExcerpt
+        post={post}
+        words={60}
+      />
+    </p>
+  </div>
+  {image && <BlogThumbnail image={image} alt={alt} />}
+</article>

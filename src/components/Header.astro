@@ -1,11 +1,12 @@
 ---
 import { Icon } from "astro-icon/components";
+import Link from "./Link.astro";
 import Logo from "../components/Logo.astro";
 
 const navigation = [
-  { name: `About`, href: "/"},
-  { name: 'Blog', href: "/"},
-  { name: 'Patterns', href: "/"},
+  { name: "About", href: "/about"},
+  { name: "Blog", href: "/blog"},
+  { name: "Patterns", href: "/"},
 ]
 ---
 
@@ -31,10 +32,10 @@ const navigation = [
       <div class="flex items-center space-x-3">
         <div class="hidden md:inline-block">
           {navigation.map((item: any) => (
-            <a
+            <Link
               href={item.href}
               class="text-phthalo-900 dark:text-phthalo-100 hover:underline hover:text-lila-800 dark:hover:text-fuzz-200 rounded-md px-3 py-2 text-base font-semibold"
-            >{item.name}</a>
+            >{item.name}</Link>
           ))}
         </div>
         <div class="absolute inset-y-0 right-0 self-center md:static flex items-center md:border-l md:border-phthalo-200 md:dark:border-phthalo-700 md:pl-5 md:space-x-3">

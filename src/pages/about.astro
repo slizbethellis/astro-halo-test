@@ -1,0 +1,34 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Link from "../components/Link.astro";
+import { Picture } from "astro:assets";
+import Headshot from "../assets/headshot.jpg";
+const pageTitle = "About | Haloroundmyhead Knits";
+---
+
+<MainLayout pageTitle={pageTitle}>
+  <main class="max-w-full my-7 md:my-10">
+    <article class="flex flex-col prose dark:prose-invert prose-lg prose-phthalo items-center px-6 md:px-24 pb-3 md:pb-6 max-w-6xl print:prose">
+      <h1 class="text-center">About me</h1>
+      <figure class="flex place-self-center overflow-hidden rounded-full [-webkit-transform:translate3d(0,0,0)] [-webkit-backface-visibility:hidden] w-72 md:w-96 h-72 md:h-96 m-0">
+        <Picture
+          src={Headshot}
+          alt="Sarah Ellis - headshot"
+          width="384"
+          height="384"
+          fit="cover"
+          layout="constrained"
+        />
+      </figure>
+      <p>My first knitting lesson was just before I turned ten, and I’ve scarcely spent a day without knitting since then. Although I learned the most basic of basics from my mother (casting on and off, knit/purl, possibly basic decreases), most of what I know came from reading a book or article and experimenting on my own. I also happen to be a decent crocheter (I think my first lesson was roughly a year after I learned to knit), but I’m definitely nowhere near as skilled at crochet as I am with knitting. My first published design, (warning: the following two links go to Ravelry) the <Link href="http://www.ravelry.com/patterns/library/awry-hat">Awry Hat</Link> <Link href="https://www.ravelry.com/patterns/library/awry-mitts">and Mitts</Link>, appeared in <Link href="https://www.interweave.com/product/knitscene-accessories-2015-digital-edition/"><em>Knitscene</em>, Accessories 2015</Link>. I have also had six patterns featured so far in <em>Knitty</em>, the latest of which is <Link href="https://knitty.com/ISSUEss24/PATTfruhling/PATTfruhling.php">Frühlingsblümchen</Link>.</p>
+
+      <p>My mission is to create patterns that will inspire you to try new techniques and experiment with yarn and color selection. But most of all, I want my designs to be fun to make and wear.</p>
+
+      <p>As for other interests, I’m trained in full stack development, specifically the MERN stack. I also collect music in physical formats, although I do not have my turntable set up at the moment (lack speakers, and my current dac/headphone amp has no analog inputs). As for TV, I’m very much into sci-fi and British comedies. I aspire to be a polyglot, and I’ve studied German and Spanish in school, along with starting Japanese on Duolingo (and have recently migrated to Renshuu for Japanese...it’s so much better than Duo).</p>
+
+      <h2>What’d you use to build this website?</h2>
+
+      <p>This website started off using Gatsby, which is a static site generator using React.js. But it’s becoming increasingly obvious that the Gatsby project is stagnating, and I wanted to switch to a framework that uses Vite instead of Webpack. So I chose Astro because I really like the component islands concept. I’m using Netlify for CDN and deployment of this site, and styling is Tailwind CSS, just like the previous Gatsby version of this site. Since I’m the only author on this site, and writing posts in Markdown isn’t a big deal for me, I decided to ditch the CMS altogether.</p>
+    </article>
+  </main>  
+</MainLayout>
