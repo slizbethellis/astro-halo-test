@@ -1,0 +1,28 @@
+---
+import { Picture } from "astro:assets";
+import MainLayout from "../layouts/MainLayout.astro";
+import Link from "../components/Link.astro";
+import Hero from "../assets/fruhlingsblumchen-hero.jpg"
+import { getCollection } from "astro:content";
+
+const buttons = await getCollection("links");
+const pageTitle = "Links | Haloroundmyhead Knits";
+---
+
+<MainLayout pageTitle={pageTitle}>
+  <main class="flex flex-col justify-items-center w-full max-w-xl mx-3 sm:mx-auto my-7">
+    <Picture
+      src={Hero}
+      alt="woman with brightly colored asymmetrical lace wrap draped across shoulders"
+      width={576}
+      fit="cover"
+      layout="constrained"
+    />
+    <h1 class="text-center text-4xl text-bold pt-7 pb-5">Links</h1>
+    <div class="flex flex-col justify-items-center w-full mx-auto space-y-3">
+      {buttons.map(( button ) =>(
+        <Link href={button.data.href} class="block w-full rounded-full text-center text-base font-semibold bg-linear-to-r from-lila-800 to-lila-950 dark:from-fuzz-100 dark:to-fuzz-300 text-phthalo-50 dark:text-phthalo-950 hover:saturate-200 hover:no-underline px-8 py-4">{button.data.label}</Link>
+      ))}
+    </div>
+  </main>
+</MainLayout>

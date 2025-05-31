@@ -1,0 +1,144 @@
+---
+import { getCollection } from 'astro:content';
+import MainLayout from "./MainLayout.astro";
+import ColumnGallery from "../components/ColumnGallery.astro";
+import Tabs from "../components/Tabs.astro";
+import TabPanel from "../components/TabPanel.astro";
+import PostPagination from '../components/PostPagination.astro';
+
+const dateOptions: any = {
+  month: "long",
+  year: "numeric"
+};
+
+const posts = (await getCollection('patterns'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const currentPostIndex = posts.findIndex((post) => post.id == Astro.params.slug);
+const previousPost = currentPostIndex + 1 === posts.length ? undefined : posts[currentPostIndex + 1];
+const nextPost = currentPostIndex === 0 ? undefined : posts[currentPostIndex - 1];
+
+const { frontmatter } = Astro.props;
+---
+
+<MainLayout pageTitle={`${frontmatter.title} | Pattern | Haloroundmyhead Knits`}>
+  <main class="flex flex-col md:flex-row justify-center max-w-1152px xl:w-[1152px] mx-3 md:mx-6 my-7 md:my-10">
+    <div class="grid grid-cols-1 md:grid-cols-[42%_57%] gap-6 md:gap-3">
+      <section class="justify-self-center max-w-[465px]">
+        <ColumnGallery images={frontmatter.pictures} />
+      </section>
+      <section class="justify-self-center flex flex-col w-full">
+        <h1 class="text-center text-4xl md:text-5xl leading-none font-bold mb-3 md:mb-6">{frontmatter.title}</h1>
+        <div class="flex flex-col items-center mb-6 gap-6">
+          <span class="text-center text-2xl font-semibold">
+            {frontmatter.patternSource.price !== 0 ? `$${parseFloat(frontmatter.patternSource.price).toFixed(2)} USD` : `free`}
+          </span>
+          <a href={frontmatter.patternSource.link} class="self-center rounded-full text-lg text-center font-bold bg-lila-900 text-fuzz-50 px-6 py-2 dark:bg-fuzz-300 dark:text-phthalo-950 hover:no-underline hover:bg-lila-700 dark:hover:bg-fuzz-200">
+            Get Pattern
+          </a>
+        </div>
+        <div>
+          <Tabs name="pattern details" tabList={["Description", "Specs"]}/>
+          <TabPanel
+            styles="prose dark:prose-invert prose-lg prose-phthalo max-w-[560px] md:max-w-full print:prose mt-3 md:mt-6"
+            panel="tabpanel-1"
+            tab="tab-1"
+          >
+            <slot />
+          </TabPanel>
+          <TabPanel
+            styles="w-full is-hidden"
+            panel="tabpanel-2"
+            tab="tab-2"
+          >
+            <div class="pt-3 md:pt-6 w-full">
+              <table class="table-fixed text-lg border-collapse border-b border-phthalo-600 dark:border-phthalo-200/50 w-full">
+                <tbody class="gap-y-0.5 divide-y divide-phthalo-600 dark:divide-phthalo-200/50">
+                  {/* If pattern is no longer available from original source and there is a new source (i.e. a non-null value for currentSrc), it will conditionally render as "Original source" and "Current source", but if currentSrc is null, then originalSrc will show as "Published in". */}
+                  {frontmatter.currentSrc ? (
+                    <tr>
+                      <th class="text-left px-3 py-1.5 w-[9rem] lg:w-[30%]" scope="row">Original source</th>
+                      <td class="px-3 py-1.5 w-auto md:w-[70%]">{frontmatter.originalSrc}</td>
+                    </tr>
+                    <tr>
+                      <th class="text-left px-3 py-1.5" scope="row">Current source</th>
+                      <td class="px-3 py-1.5">{frontmatter.currentSrc}</td>
+                    </tr> 
+                  ) : (
+                    <tr>
+                      <th class="text-left px-3 py-1.5 w-[9rem] lg:w-[30%]" scope="row">Published in</th>
+                      <td class="px-3 py-1.5 w-auto md:w-[70%]">{frontmatter.originalSrc}</td>
+                    </tr>
+                  )}
+                  <tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Category</th>
+                    <td class="px-3 py-1.5">{frontmatter.itemType}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Release Date</th>
+                    <td class="px-3 py-1.5">{frontmatter.pubDate.toLocaleDateString("en-US", dateOptions)}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Sizes</th>
+                    <td class="px-3 py-1.5">{frontmatter.sizes}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Yarn(s)</th>
+                    <td class="px-3 py-1.5">{frontmatter.yarn.join(', ')}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Yarn Weight</th>
+                    <td class="px-3 py-1.5">{frontmatter.yarnWeight.join(', ')}</td>
+                  </tr>
+                  <tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Yardage</th>
+                    <td class="px-3 py-1.5">
+                      <ul class="gap-y-0.5 divide-y divide-phthalo-400 dark:divide-phthalo-400/50">
+                        {frontmatter.yardage.map((yard: any)=>(
+                          <li>{frontmatter.yardage.length > 1 && (`${yard.variant}:`)}{yard.yards} yds / {yard.meters} m</li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                  {frontmatter.needles && (<tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Needles</th>
+                    <td class="px-3 py-1.5">{frontmatter.needles}</td>
+                  </tr>)}
+                  {frontmatter.hooks && (<tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Hooks</th>
+                    <td class="px-3 py-1.5">{frontmatter.hooks}</td>
+                  </tr>)}
+                  <tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Gauge</th>
+                    <td class="px-3 py-1.5">
+                      <ul class="gap-y-1 divide-y divide-phthalo-400 dark:divide-phthalo-400/50">
+                        {frontmatter.gauge.map((gauge: any)=>(
+                          <li>{gauge}</li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="text-left px-3 py-1.5" scope="row">Measurements</th>
+                    <td class="px-3 py-1.5">
+                      <ul class="gap-y-0.5 divide-y divide-phthalo-400 dark:divide-phthalo-400/50">
+                        {frontmatter.finalMeasure.map((measure: any)=>(
+                          <li>{measure.dimName}: {measure.inches} inches / {measure.cm} cm</li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </TabPanel>
+          <PostPagination collection="patterns" previous={previousPost} next={nextPost} />
+        </div>
+      </section>
+    </div>
+  </main>
+</MainLayout>
+
+<script>
+  import "../scripts/tabs.js";
+</script>

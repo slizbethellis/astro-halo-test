@@ -1,14 +1,21 @@
 ---
 import { getCollection } from "astro:content";
-import MainLayout from "../layouts/MainLayout.astro";
-import BlogCard from "../components/BlogCard.astro";
-import Sidebar from "../components/Sidebar.astro";
-import Link from "../components/Link.astro";
-import { dateOptions } from "../scripts/dateOptions.ts"
+import type { GetStaticPaths } from "astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import Sidebar from "../../components/Sidebar.astro";
+import Link from "../../components/Link.astro";
+import ListPagination from "../../components/ListPagination.astro";
+import { dateOptions } from "../../scripts/dateOptions.ts";
 
-const allPosts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+export const getStaticPaths = (async ({paginate}) => {
+  const allPosts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  return paginate(allPosts, { pageSize: 2 } );
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
 const pageTitle = "Blog | Haloroundmyhead Knits";
 ---
 
@@ -19,7 +26,7 @@ const pageTitle = "Blog | Haloroundmyhead Knits";
         <h1 class="text-center text-5xl font-bold mb-7">Blog</h1>
         <section class="justify-start w-full">
           <div class="self-start space-y-1 divide-y divide-phthalo-600 dark:divide-phthalo-200/50 border-b border-phthalo-600 dark:border-phthalo-200/50 mx-3 md:mx-6">
-            {allPosts
+            {page.data
               .map((post: any) => (
                 <BlogCard
                   pubDate={post.data.pubDate.toLocaleDateString("en-US", dateOptions)}
@@ -32,7 +39,11 @@ const pageTitle = "Blog | Haloroundmyhead Knits";
             ))}
           </div>
           {/* Pagination component will not render if there's only one page */}
-          
+          {(page.lastPage > 1) && (
+            <div class="mx-3 md:mx-6">
+              <ListPagination previous={page.url.prev} next={page.url.next} />
+            </div>
+          )}
         </section>
       </main>
       <Sidebar />

@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import ListPagination from "../../components/ListPagination.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import PatternCard from "../../components/PatternCard.astro";
+
+export const getStaticPaths = (async ({paginate}) => {
+  const posts = (await getCollection("patterns")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  return paginate(posts, { pageSize: 24 } );
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const pageTitle = "Patterns | Haloroundmyhead Knits";
+---
+
+<MainLayout pageTitle={pageTitle}>
+  <main class="flex flex-col w-full my-7 md:my-10">
+    <h1 class="text-center text-5xl leading-none font-bold mb-10">Patterns</h1>
+    <ul class="self-center grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3 mx-3 sm:mx-6">
+      {page.data
+        .map((post) => (
+          <PatternCard
+            slug={`/patterns/${post.id}`}
+            title={post.data.title}
+            image={post.data.pattImage}
+            alt={post.data.pattAlt}
+            price={post.data.patternSource.price}
+          />
+        ))}
+    </ul>
+    {/* Pagination component will not render if there's only one page */}
+    {(page.lastPage > 1) && (
+      <div class="mt-6 mx-3 sm:mx-6">
+        <ListPagination previous={page.url.prev} next={page.url.next} />
+      </div>
+    )}
+  </main>
+</MainLayout>

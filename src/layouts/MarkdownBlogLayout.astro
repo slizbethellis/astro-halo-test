@@ -1,19 +1,47 @@
 ---
+import { getCollection } from 'astro:content';
 import MainLayout from "./MainLayout.astro";
+import Link from '../components/Link.astro';
+import PostPagination from '../components/PostPagination.astro';
 import { dateOptions } from "../scripts/dateOptions.ts"
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const currentPostIndex = posts.findIndex((post) => post.id == Astro.params.slug);
+const previousPost = currentPostIndex + 1 === posts.length ? undefined : posts[currentPostIndex + 1];
+const nextPost = currentPostIndex === 0 ? undefined : posts[currentPostIndex - 1];
 
 const { frontmatter } = Astro.props;
 ---
 
 <MainLayout pageTitle={`${frontmatter.title} | Blog | Haloroundmyhead Knits`}>
   <main class="justify-self-center max-w-full my-7 md:my-10">
-    <article class='flex flex-col prose dark:prose-invert prose-lg prose-phthalo items-center px-6 md:px-24 pb-3 md:pb-6 max-w-full min-[1152px]:max-w-6xl print:prose'>
-      <h1 class='text-center'>{frontmatter.title}</h1>
-      <span class='text-center text-xl'>{frontmatter.pubDate.toLocaleDateString("en-US", dateOptions)}</span>
-      <div class='max-w-full overflow-auto'>
+    <article class="flex flex-col prose dark:prose-invert prose-lg prose-phthalo items-center px-6 md:px-24 pb-3 md:pb-6 max-w-full min-[1152px]:max-w-6xl print:prose">
+      <h1 class="text-center">{frontmatter.title}</h1>
+      <span class="text-center text-xl">{frontmatter.pubDate.toLocaleDateString("en-US", dateOptions)}</span>
+      <div class="max-w-full overflow-auto">
         <p>{frontmatter.description}</p>
         <slot />
       </div>
     </article>
+    <div class="flex flex-col max-w-[1152px] px-6 md:px-24 print:hidden">
+      <PostPagination collection="blog" previous={previousPost} next={nextPost} />
+      {frontmatter.tags && frontmatter.tags.length ? (
+        <section class="self-center border-t border-phthalo-600 dark:border-phthalo-200/50 w-full pt-4 md:pt-6">
+          <h2 class="text-center text-xl md:text-2xl font-semibold pb-4">Tags</h2>
+          <ul class="flex flex-wrap place-content-center gap-x-2 gap-y-5">
+            {frontmatter.tags.map((tag: any) => (
+              <li>
+                <Link
+                  href={`/tags/${tag}/`}
+                  class="border-2 border-lila-900 dark:border-fuzz-300 rounded-full text-phthalo-900 dark:text-phthalo-100 hover:no-underline hover:ring-2  hover:ring-lila-700 dark:hover:ring-fuzz-200 hover:border-lila-700 dark:hover:border-fuzz-200 text-semibold px-3 py-1"
+                >{tag}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+    </div>
   </main>
 </MainLayout>

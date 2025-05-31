@@ -1,7 +1,7 @@
 ---
+import { Picture } from "astro:assets";
 import MainLayout from "../layouts/MainLayout.astro";
 import Link from "../components/Link.astro";
-import { Picture } from "astro:assets";
 import Headshot from "../assets/headshot.jpg";
 const pageTitle = "About | Haloroundmyhead Knits";
 ---
@@ -18,6 +18,7 @@ const pageTitle = "About | Haloroundmyhead Knits";
           height="384"
           fit="cover"
           layout="constrained"
+          loading="eager"
         />
       </figure>
       <p>My first knitting lesson was just before I turned ten, and I’ve scarcely spent a day without knitting since then. Although I learned the most basic of basics from my mother (casting on and off, knit/purl, possibly basic decreases), most of what I know came from reading a book or article and experimenting on my own. I also happen to be a decent crocheter (I think my first lesson was roughly a year after I learned to knit), but I’m definitely nowhere near as skilled at crochet as I am with knitting. My first published design, (warning: the following two links go to Ravelry) the <Link href="http://www.ravelry.com/patterns/library/awry-hat">Awry Hat</Link> <Link href="https://www.ravelry.com/patterns/library/awry-mitts">and Mitts</Link>, appeared in <Link href="https://www.interweave.com/product/knitscene-accessories-2015-digital-edition/"><em>Knitscene</em>, Accessories 2015</Link>. I have also had six patterns featured so far in <em>Knitty</em>, the latest of which is <Link href="https://knitty.com/ISSUEss24/PATTfruhling/PATTfruhling.php">Frühlingsblümchen</Link>.</p>

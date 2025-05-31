@@ -1,0 +1,35 @@
+---
+import { Icon } from "astro-icon/components";
+import Link from "./Link.astro";
+
+const { collection, previous, next } = Astro.props;
+---
+
+<div class="self-center w-full mx-3 md:mx-0 print:hidden">
+  <nav aria-label="pagination">
+    <div class="flex flex-wrap items-start justify-between mt-4">
+      {previous && (
+        <div class="text-left md:w-[48%] mr-auto my-4">
+          <Link href={`/${collection}/${previous.id}`} rel="prev" class="hover:no-underline">
+            <p class="text-sm text-phthalo-900 dark:text-phthalo-100 ml-6">Previous</p>
+            <span class="flex flex-row place-content-start text-semibold text-lg hover:underline">
+              <Icon name="iconoir:arrow-left" class="inline-block h-4 w-4 mr-2 mt-1.5" aria-hidden="true" />
+              {previous.data.title}
+            </span>
+          </Link>
+        </div>
+      )}
+      {next && (
+        <div class="text-right md:w-[48%] ml-auto my-4">
+          <Link href={`/${collection}/${next.id}`} rel="next" class="hover:no-underline">
+            <p class="text-sm text-phthalo-900 dark:text-phthalo-100 mr-6">Next</p>
+            <span class="flex flex-row place-content-end text-semibold text-lg hover:underline">
+              {next.data.title}
+              <Icon name="iconoir:arrow-right" class="inline-block h-4 w-4 ml-2 mt-1.5" aria-hidden="true" />
+            </span>
+          </Link>
+        </div>
+      )}
+    </div>
+  </nav>
+</div>

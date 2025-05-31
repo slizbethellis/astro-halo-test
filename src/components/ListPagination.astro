@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon/components";
+import Link from "./Link.astro";
+
+const { collection, previous, next } = Astro.props;
+---
+
+<div class="max-w-full">
+  <nav aria-label="pagination">
+    <div class="flex flex-wrap items-start justify-between mt-4">
+      {previous && (
+        <div class="mr-auto">
+          <Link href={previous} rel="prev" class="text-lg font-semibold">
+            <Icon name="iconoir:arrow-left" class="inline-block h-4 w-4 mr-2 mb-1" aria-hidden="true" />Previous Page
+          </Link>
+        </div>
+      )}
+      {next && (
+        <div class="ml-auto">
+          <Link href={next} rel="next" class="text-lg font-semibold">
+            Next Page<Icon name="iconoir:arrow-right" class="inline-block h-4 w-4 ml-2 mb-1" aria-hidden="true" />
+          </Link>
+        </div>
+      )}
+    </div>
+  </nav>
+</div>

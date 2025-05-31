@@ -1,0 +1,36 @@
+---
+import { Picture } from "astro:assets";
+import { getCollection } from "astro:content";
+import Link from "./Link.astro";
+
+
+const posts = (await getCollection("patterns", ({ data }) => {
+  return data.favorite === true;
+})).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<ul class="grid grid-cols-3 md:grid-cols-4 2xl:grid-cols-5 max-w-[1920px] h-[574px]">
+  {/* Breakpoints larger than "small" get 4 pattern photo buttons, smaller breakpoints get only 3. */}
+  {posts
+    .map(( post ) => (
+      <li class="max-md:nth-4:hidden max-2xl:nth-5:hidden">
+        <Link href={`/patterns/${post.id}`}>
+          <div class="flex overflow-hidden hover:ring-3 hover:ring-zomp rounded-[48px] sm:rounded-[96px] [-webkit-transform:translate3d(0,0,0)] [-webkit-backface-visibility:hidden] m-1.5 md:m-3">
+            <div class="relative overflow-hidden w-[360px] h-[550px]">
+              <Picture
+                src={post.data.pattImage}
+                alt={`Pattern info for ${post.data.title}`}
+                width={360}
+                height={550}
+                class="min-h-full"
+                layout="fixed"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </Link>
+      </li>
+    ))}
+</ul>

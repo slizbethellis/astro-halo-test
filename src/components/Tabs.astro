@@ -1,0 +1,47 @@
+---
+const { name, tabList } = Astro.props;
+---
+
+<ul
+  role="tablist"
+  id="tablist"
+  aria-label={name}
+  class="flex flex-row justify-center border-b border-phthalo-400 dark:border-phthalo-400/50 text-xl w-full"
+>
+  {tabList.map((tab: any, index: number) => (
+    <li role="presentation">
+      <button
+        role="tab"
+        type="button"
+        id={`tab-${index+1}`}
+        aria-selected={index === 0 ? "true" : "false"}
+        aria-controls={`tabpanel-${index+1}`}
+        class="tab px-4 pb-2"
+        tabindex={index === 0 ? "0" : "-1"}
+      >
+        {tab}
+      </button>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .tab[aria-selected="true"] {
+    border-bottom: 2px solid #870b9d;
+    color:#870b9d;
+  }
+
+  .dark .tab[aria-selected="true"] {
+    border-bottom: 2px solid #ffa272;
+    color:#ffa272;
+  }
+
+  .tab[aria-selected="false"]:hover{
+    color: #335152;
+  }
+
+  .tab:focus-visible {
+    border: 1px solid #39a78e;
+    border-radius: calc(infinity * 1px);
+  }
+</style>

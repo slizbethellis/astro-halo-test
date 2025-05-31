@@ -1,7 +1,7 @@
 {
   "name": "astro-halo-test",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -12,13 +12,16 @@
     "@fontsource-variable/nunito": "^5.2.5",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.6",
-    "astro": "^5.7.12",
+    "astro": "^5.7.13",
     "astro-icon": "^1.1.5",
+    "astro-masonry": "^1.2.2",
+    "photoswipe": "^5.4.4",
     "tailwindcss": "^4.1.6"
   },
   "devDependencies": {
     "@iconify-json/iconoir": "^1.2.7",
-    "@iconify-json/lucide": "^1.2.41",
-    "@igor.dvlpr/astro-post-excerpt": "^3.0.4"
+    "@iconify-json/lucide": "^1.2.43",
+    "@igor.dvlpr/astro-post-excerpt": "^3.0.4",
+    "@types/photoswipe": "^4.1.6"
   }
 }

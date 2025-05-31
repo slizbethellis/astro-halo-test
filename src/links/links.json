@@ -1,0 +1,24 @@
+{
+  "links":[
+    {
+      "id": "Homepage",
+      "label": "My Website (You're Already Here)",
+      "href": "/"
+    },
+    {
+      "id": "Ravelry",
+      "label": "My Designs on Ravelry",
+      "href": "https://www.ravelry.com/designers/sarah-ellis"
+    },
+    {
+      "id": "Latest Knitty pattern",
+      "label": "See Frühlingsblümchen in Knitty S/S '24",
+      "href": "https://knitty.com/ISSUEss24/PATTfruhling/PATTfruhling.php"
+    },
+    {
+      "id": "Terochichimomo",
+      "label": "A Useful Coffee Tutorial",
+      "href": "/blog/2017-01-04-a-beginners-guide-to-brewing-with-chemex"
+    }
+  ]
+}

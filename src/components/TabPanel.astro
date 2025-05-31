@@ -1,0 +1,34 @@
+---
+const { hidden, panel, tab, styles } = Astro.props;
+---
+
+<div class="tabpanel-container">
+  {hidden ? (
+    <section
+      role="tabpanel"
+      id={panel}
+      aria-labelledby={tab}
+      tabindex="0"
+      class={styles}
+    >
+      <slot />
+    </section>
+    ) : (
+    <section
+      role="tabpanel"
+      id={panel}
+      aria-labelledby={tab}
+      tabindex="0"
+      class={styles}
+    >
+      <slot />
+    </section>
+    )
+  }
+</div>
+
+<style>
+  .is-hidden {
+    display: none;
+  }
+</style>

@@ -22,9 +22,10 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 const totalCount = posts.length;
+const pageTitle = `${tag} | Haloroundmyhead Knits`;
 ---
 
-<MainLayout pageTitle=`${tag} | Haloroundmyhead Knits`>
+<MainLayout pageTitle={pageTitle}>
   <main class="flex flex-col max-w-full my-7 md:my-10">
     <h1 class="text-center text-5xl leading-none font-bold mb-10 mx-3">{`${totalCount} post${
       totalCount === 1 ? '' : 's'

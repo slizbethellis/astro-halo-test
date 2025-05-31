@@ -16,13 +16,19 @@ importers:
         version: 0.5.16(tailwindcss@4.1.6)
       '@tailwindcss/vite':
         specifier: ^4.1.6
-        version: 4.1.6(vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2))
+        version: 4.1.6(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))
       astro:
-        specifier: ^5.7.12
-        version: 5.7.12(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3)
+        specifier: ^5.7.13
+        version: 5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3)(yaml@2.7.1)
       astro-icon:
         specifier: ^1.1.5
         version: 1.1.5
+      astro-masonry:
+        specifier: ^1.2.2
+        version: 1.2.2
+      photoswipe:
+        specifier: ^5.4.4
+        version: 5.4.4
       tailwindcss:
         specifier: ^4.1.6
         version: 4.1.6
@@ -31,11 +37,14 @@ importers:
         specifier: ^1.2.7
         version: 1.2.7
       '@iconify-json/lucide':
-        specifier: ^1.2.41
-        version: 1.2.41
+        specifier: ^1.2.43
+        version: 1.2.43
       '@igor.dvlpr/astro-post-excerpt':
         specifier: ^3.0.4
-        version: 3.0.4(astro@5.7.12(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3))
+        version: 3.0.4(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3)(yaml@2.7.1))
+      '@types/photoswipe':
+        specifier: ^4.1.6
+        version: 4.1.6
 
 packages:
 
@@ -245,8 +254,8 @@ packages:
   '@iconify-json/iconoir@1.2.7':
     resolution: {integrity: sha512-UDlx2WeWHqopfKRsjOta6fn/KkOhF0MmI2AxoYfakqtMLlznkTnrtY9QVuXZzsbvk+Gyavq2L39VjhcxGbt+LA==}
 
-  '@iconify-json/lucide@1.2.41':
-    resolution: {integrity: sha512-rOOahfHMgWPqLyRLvLSqEwCmS4jEDxB1Pk63QTe0GObLBKgYKlPmuc1zKYzSuPPkLX/ND7rScVOIDb//ggMNzg==}
+  '@iconify-json/lucide@1.2.43':
+    resolution: {integrity: sha512-DIOGQ2gWVpbVQ/C4n77PxeK2h/7OYxKVtCr0E1CXZIMQp8KEL0kcAegP42dteIY3V9FYGn1KN3I8uOIY6SeNRQ==}
 
   '@iconify/tools@4.1.2':
     resolution: {integrity: sha512-q6NzLQYEN9zkDfcyBqD3vItHcZw97w/s++3H3TBxUORr57EfHxj6tOW6fyufDjMq+Vl56WXWaPx1csBPYlI5CA==}
@@ -653,8 +662,11 @@ packages:
   '@types/nlcst@2.0.3':
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
 
-  '@types/node@22.15.17':
-    resolution: {integrity: sha512-wIX2aSZL5FE+MR0JlvF87BNVrtFWf6AE6rxSE9X7OwnVvoyCQjpzSRJ+M87se/4QCkCiebQAqrJ0y6fwIyi7nw==}
+  '@types/node@22.15.18':
+    resolution: {integrity: sha512-v1DKRfUdyW+jJhZNEI1PYy29S2YRxMV5AOO/x/SjKmW0acCIOqmbj6Haf9eHAhsPmrhlHSxEhv/1WszcLWV4cg==}
+
+  '@types/photoswipe@4.1.6':
+    resolution: {integrity: sha512-6kN4KYjNF4sg79fSwZ46s4Pron4+YJxoW0DQOcHveUZc/3cWd8Q4B9OLlDmEYw9iI6fODU8kyyq8ZBy+8F/+zQ==}
 
   '@types/tar@6.1.13':
     resolution: {integrity: sha512-IznnlmU5f4WcGTh2ltRu/Ijpmk8wiWXfF0VA4s+HPjHZgvFggk1YaIkbo5krX/zUCzWF8N/l4+W/LNxnvAJ8nw==}
@@ -713,8 +725,11 @@ packages:
   astro-icon@1.1.5:
     resolution: {integrity: sha512-CJYS5nWOw9jz4RpGWmzNQY7D0y2ZZacH7atL2K9DeJXJVaz7/5WrxeyIxO8KASk1jCM96Q4LjRx/F3R+InjJrw==}
 
-  astro@5.7.12:
-    resolution: {integrity: sha512-UQOItiZz2hcv9PlHTQ6dNqFDIVNPnmwk6eyAjJqPE9O8EDHZK2JKtTRD0CBFN2Uqr0RE0TWP2gqDpLfsa5dJEA==}
+  astro-masonry@1.2.2:
+    resolution: {integrity: sha512-416VOoR+6dVjOyM2pxlQFj4AiFIV6NdA6WFUFqkVTitaG61o+5Sz0YTA20FAW7xnbIVWru9h6XIWNeEy3hiPmA==}
+
+  astro@5.7.13:
+    resolution: {integrity: sha512-cRGq2llKOhV3XMcYwQpfBIUcssN6HEK5CRbcMxAfd9OcFhvWE7KUy50zLioAZVVl3AqgUTJoNTlmZfD2eG0G1w==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -890,8 +905,8 @@ packages:
     resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
 
-  debug@4.4.0:
-    resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
+  debug@4.4.1:
+    resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -1649,6 +1664,10 @@ packages:
   pend@1.2.0:
     resolution: {integrity: sha512-F3asv42UuXchdzt+xXqfW1OGlVBe+mxa2mqI0pg5yAHZPvFmY3Y6drSf/GQ1A86WgWEN9Kzh/WrgKa6iGcHXLg==}
 
+  photoswipe@5.4.4:
+    resolution: {integrity: sha512-WNFHoKrkZNnvFFhbHL93WDkW3ifwVOXSW3w1UuZZelSmgXpIGiZSNlZJq37rR8YejqME2rHs9EhH9ZvlvFH2NA==}
+    engines: {node: '>= 0.12.0'}
+
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -1764,8 +1783,8 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  semver@7.7.1:
-    resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==}
+  semver@7.7.2:
+    resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -1888,8 +1907,8 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
-  undici@6.21.2:
-    resolution: {integrity: sha512-uROZWze0R0itiAKVPsYhFov9LxrPMHLMEQFszeI2gCN6bnIIZ8twzBCJcN2LJrBBLfrP0t1FW0g+JmKVl8Vk1g==}
+  undici@6.21.3:
+    resolution: {integrity: sha512-gBLkYIlEnSp8pFbT64yFgGE6UIB9tAkhukC23PmMDCe5Nd+cRqKxSjw5y54MK2AZMgZfJWMaNE4nYUHgi1XEOw==}
     engines: {node: '>=18.17'}
 
   unicode-properties@1.4.1:
@@ -2095,6 +2114,11 @@ packages:
     resolution: {integrity: sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw==}
     engines: {node: '>=18'}
 
+  yaml@2.7.1:
+    resolution: {integrity: sha512-10ULxpnOCQXxJvBgxsn9ptjq6uviG/htZKk9veJGhlqn3w/DxQ631zFF+nlQXLwmImeS5amR2dl2U8sg6U9jsQ==}
+    engines: {node: '>= 14'}
+    hasBin: true
+
   yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
@@ -2182,7 +2206,7 @@ snapshots:
   '@astrojs/telemetry@3.2.1':
     dependencies:
       ci-info: 4.2.0
-      debug: 4.4.0
+      debug: 4.4.1
       dlv: 1.1.3
       dset: 3.1.4
       is-docker: 3.0.0
@@ -2298,7 +2322,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/lucide@1.2.41':
+  '@iconify-json/lucide@1.2.43':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -2326,7 +2350,7 @@ snapshots:
       '@antfu/install-pkg': 1.1.0
       '@antfu/utils': 8.1.1
       '@iconify/types': 2.0.0
-      debug: 4.4.0
+      debug: 4.4.1
       globals: 15.15.0
       kolorist: 1.8.0
       local-pkg: 1.1.1
@@ -2334,10 +2358,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@igor.dvlpr/astro-post-excerpt@3.0.4(astro@5.7.12(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3))':
+  '@igor.dvlpr/astro-post-excerpt@3.0.4(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3)(yaml@2.7.1))':
     dependencies:
       '@igor.dvlpr/strip-yaml-front-matter': 1.0.0
-      astro: 5.7.12(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3)
+      astro: 5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3)(yaml@2.7.1)
       mdast-util-from-markdown: 2.0.2
       mdast-util-mdx: 3.0.0
       micromark-extension-mdxjs: 3.0.0
@@ -2621,12 +2645,12 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.6
 
-  '@tailwindcss/vite@4.1.6(vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2))':
+  '@tailwindcss/vite@4.1.6(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))':
     dependencies:
       '@tailwindcss/node': 4.1.6
       '@tailwindcss/oxide': 4.1.6
       tailwindcss: 4.1.6
-      vite: 6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2)
+      vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1)
 
   '@trysound/sax@0.2.0': {}
 
@@ -2642,7 +2666,7 @@ snapshots:
 
   '@types/fontkit@2.0.8':
     dependencies:
-      '@types/node': 22.15.17
+      '@types/node': 22.15.18
 
   '@types/hast@3.0.4':
     dependencies:
@@ -2658,13 +2682,15 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/node@22.15.17':
+  '@types/node@22.15.18':
     dependencies:
       undici-types: 6.21.0
 
+  '@types/photoswipe@4.1.6': {}
+
   '@types/tar@6.1.13':
     dependencies:
-      '@types/node': 22.15.17
+      '@types/node': 22.15.18
       minipass: 4.2.8
 
   '@types/unist@2.0.11': {}
@@ -2673,7 +2699,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 22.15.17
+      '@types/node': 22.15.18
     optional: true
 
   '@ungap/structured-clone@1.3.0': {}
@@ -2714,7 +2740,9 @@ snapshots:
       - debug
       - supports-color
 
-  astro@5.7.12(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3):
+  astro-masonry@1.2.2: {}
+
+  astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3)(yaml@2.7.1):
     dependencies:
       '@astrojs/compiler': 2.12.0
       '@astrojs/internal-helpers': 0.6.1
@@ -2732,7 +2760,7 @@ snapshots:
       common-ancestor-path: 1.0.1
       cookie: 1.0.2
       cssesc: 3.0.0
-      debug: 4.4.0
+      debug: 4.4.1
       deterministic-object-hash: 2.0.2
       devalue: 5.1.1
       diff: 5.2.0
@@ -2758,7 +2786,7 @@ snapshots:
       picomatch: 4.0.2
       prompts: 2.4.2
       rehype: 13.0.2
-      semver: 7.7.1
+      semver: 7.7.2
       shiki: 3.4.0
       tinyexec: 0.3.2
       tinyglobby: 0.2.13
@@ -2768,8 +2796,8 @@ snapshots:
       unist-util-visit: 5.0.0
       unstorage: 1.16.0
       vfile: 6.0.3
-      vite: 6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2)
-      vitefu: 1.0.6(vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2))
+      vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1)
+      vitefu: 1.0.6(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1))
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.2
@@ -2891,7 +2919,7 @@ snapshots:
       parse5: 7.3.0
       parse5-htmlparser2-tree-adapter: 7.1.0
       parse5-parser-stream: 7.1.2
-      undici: 6.21.2
+      undici: 6.21.3
       whatwg-mimetype: 4.0.0
 
   chokidar@4.0.3:
@@ -2989,7 +3017,7 @@ snapshots:
     dependencies:
       css-tree: 2.2.1
 
-  debug@4.4.0:
+  debug@4.4.1:
     dependencies:
       ms: 2.1.3
 
@@ -3139,7 +3167,7 @@ snapshots:
 
   extract-zip@2.0.1:
     dependencies:
-      debug: 4.4.0
+      debug: 4.4.1
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
@@ -3896,7 +3924,7 @@ snapshots:
   micromark@4.0.2:
     dependencies:
       '@types/debug': 4.1.12
-      debug: 4.4.0
+      debug: 4.4.1
       decode-named-character-reference: 1.1.0
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.3
@@ -4049,6 +4077,8 @@ snapshots:
   pathe@2.0.3: {}
 
   pend@1.2.0: {}
+
+  photoswipe@5.4.4: {}
 
   picocolors@1.1.1: {}
 
@@ -4234,13 +4264,13 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  semver@7.7.1: {}
+  semver@7.7.2: {}
 
   sharp@0.33.5:
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.4
-      semver: 7.7.1
+      semver: 7.7.2
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.33.5
       '@img/sharp-darwin-x64': 0.33.5
@@ -4379,7 +4409,7 @@ snapshots:
 
   undici-types@6.21.0: {}
 
-  undici@6.21.2: {}
+  undici@6.21.3: {}
 
   unicode-properties@1.4.1:
     dependencies:
@@ -4480,7 +4510,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2):
+  vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1):
     dependencies:
       esbuild: 0.25.4
       fdir: 6.4.4(picomatch@4.0.2)
@@ -4489,14 +4519,15 @@ snapshots:
       rollup: 4.40.2
       tinyglobby: 0.2.13
     optionalDependencies:
-      '@types/node': 22.15.17
+      '@types/node': 22.15.18
       fsevents: 2.3.3
       jiti: 2.4.2
       lightningcss: 1.29.2
+      yaml: 2.7.1
 
-  vitefu@1.0.6(vite@6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2)):
+  vitefu@1.0.6(vite@6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1)):
     optionalDependencies:
-      vite: 6.3.5(@types/node@22.15.17)(jiti@2.4.2)(lightningcss@1.29.2)
+      vite: 6.3.5(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.1)
 
   web-namespaces@2.0.1: {}
 
@@ -4532,6 +4563,9 @@ snapshots:
   yallist@4.0.0: {}
 
   yallist@5.0.0: {}
+
+  yaml@2.7.1:
+    optional: true
 
   yargs-parser@21.1.1: {}
 
