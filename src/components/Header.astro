@@ -3,6 +3,8 @@ import { Icon } from "astro-icon/components";
 import Link from "./Link.astro";
 import Logo from "../components/Logo.astro";
 
+const pathname = new URL(Astro.request.url).pathname;
+
 const navigation = [
   { name: "About", href: "/about"},
   { name: "Blog", href: "/blog"},
@@ -25,7 +27,7 @@ const navigation = [
     {/* Logo link to homepage */}
     <div class="flex flex-1 items-center justify-center md:items-stretch md:justify-between">
       <div class="flex shrink-0 items-center">
-        <Logo />
+        <Logo pathname={pathname} />
       </div>
     </div>
     <div class="md:ml-6">
@@ -34,7 +36,8 @@ const navigation = [
           {navigation.map((item: any) => (
             <Link
               href={item.href}
-              class="text-phthalo-900 dark:text-phthalo-100 hover:underline hover:text-lila-800 dark:hover:text-fuzz-200 rounded-md px-3 py-2 text-base font-semibold"
+              aria-current={pathname === `${item.href}` ? 'page' : 'false'}
+              class="nav-link text-phthalo-900 dark:text-phthalo-100 hover:underline hover:text-lila-800 dark:hover:text-fuzz-200 rounded-md px-3 py-2 text-base font-semibold"
             >{item.name}</Link>
           ))}
         </div>
@@ -52,3 +55,23 @@ const navigation = [
     </div>
   </nav>
 </header>
+
+<style>
+  .nav-link[aria-current="page"] {
+    background-color: #ddeae9;
+    color: #131f20;
+  }
+
+  .nav-link[aria-current="page"]:hover {
+    color: #870b9d;
+  }
+
+  .dark .nav-link[aria-current="page"] {
+    background-color: #253435;
+    color: #f5f8f8;
+  }
+
+  .dark .nav-link[aria-current="page"]:hover {
+    color: #ffbe98;
+  }
+</style>

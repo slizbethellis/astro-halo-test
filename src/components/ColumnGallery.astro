@@ -1,49 +1,82 @@
 ---
-import { Picture } from "astro:assets";
+import { Picture, getImage } from "astro:assets";
 import { Masonry } from "astro-masonry";
 
 const { images } = Astro.props;
 const slicedImages = images.slice(1);
+const optimizedFirst = await getImage({ src: images[0].img, inferSize: true, fit: "cover", layout: "constrained" });
 ---
 
-<button
-  class="mb-[5px]"
-  data-pswp-src={images[0].img.src}
-  data-pswp-width={images[0].img.width}
-  data-pswp-height={images[0].img.height}
->
-  <div class="max-w-[465px]">
-    <Picture
-      src={images[0].img}
-      alt={images[0].alt}
-      width={465}
-      layout="constrained"
-      loading="eager"
-    />
-  </div>
-</button>
-{slicedImages.length >= 1 && 
-  <Masonry
-    breakpointCols={{ default: 4 }}
-    sortByHeight={true}
-    class="astro-masonry-grid justify-between gap-x-[5px]"
+<section id="my-gallery" class="justify-self-center max-w-[465px]">
+  <a
+    class=""
+    href={optimizedFirst.src}
+    data-pswp-src={optimizedFirst.src}
+    data-pswp-srcset={optimizedFirst.srcSet.attribute}
+    data-pswp-width={images[0].img.width}
+    data-pswp-height={images[0].img.height}
+    target="_blank"
   >
-  {slicedImages.map((image: any) => (
-    <button
-      class="-mt-0.5"
-      data-pswp-src={image.img.src}
-      data-pswp-width={image.img.width}
-      data-pswp-height={image.img.height}
+    <div class="max-w-[465px] mb-[5px]">
+      <Picture
+        src={images[0].img}
+        alt={images[0].alt}
+        width={465}
+        layout="constrained"
+        loading="eager"
+      />
+    </div>
+  </a>
+  {slicedImages.length >= 1 && 
+    <Masonry
+      breakpointCols={{ default: 4 }}
+      sortByHeight={true}
+      class="astro-masonry-grid justify-between gap-x-[5px]"
     >
-      <div class="max-w-full inline-block">
-        <Picture
-          src={image.img}
-          alt={image.alt}
-          width={116}
-          layout="constrained"
-        />
-      </div>
-    </button>
-  ))}
-  </Masonry>
-}
+    {slicedImages.map(async (image: any) => {
+      let optimizedImage = await getImage({ src: image.img, inferSize: true, fit: "cover", layout: "constrained" });
+      return (
+        <a
+          href={optimizedImage.src}
+          data-pswp-src={optimizedImage.src}
+          data-pswp-srcset={optimizedImage.srcSet.attribute}
+          data-pswp-width={image.img.width}
+          data-pswp-height={image.img.height}
+          target="_blank"
+        >
+          <div class="max-w-full inline-block -mb-0.5">
+            <Picture
+              src={image.img}
+              alt={image.alt}
+              width={116}
+              layout="constrained"
+            />
+          </div>
+        </a>
+      )
+    })}
+    </Masonry>
+  }
+</section>
+
+<script>
+  import 'photoswipe/style.css'
+  import pswpModule from 'photoswipe'
+  import PhotoSwipeLightbox from 'photoswipe/lightbox'
+  let lightbox: PhotoSwipeLightbox;
+
+  document.addEventListener("astro:page-load", () => {
+    lightbox = new PhotoSwipeLightbox({
+      gallery: "#my-gallery",
+      children: "a",
+      showHideAnimationType: 'fade',
+      pswpModule,
+    });
+
+    lightbox.init();
+  });
+
+  document.addEventListener("astro:before-swap", () => {
+    lightbox.destroy();
+  });
+</script>

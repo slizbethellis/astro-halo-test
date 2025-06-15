@@ -24,9 +24,7 @@ const { frontmatter } = Astro.props;
 <MainLayout pageTitle={`${frontmatter.title} | Pattern | Haloroundmyhead Knits`}>
   <main class="flex flex-col md:flex-row justify-center max-w-1152px xl:w-[1152px] mx-3 md:mx-6 my-7 md:my-10">
     <div class="grid grid-cols-1 md:grid-cols-[42%_57%] gap-6 md:gap-3">
-      <section class="justify-self-center max-w-[465px]">
-        <ColumnGallery images={frontmatter.pictures} />
-      </section>
+      <ColumnGallery images={frontmatter.pictures} />
       <section class="justify-self-center flex flex-col w-full">
         <h1 class="text-center text-4xl md:text-5xl leading-none font-bold mb-3 md:mb-6">{frontmatter.title}</h1>
         <div class="flex flex-col items-center mb-6 gap-6">
